@@ -1,0 +1,765 @@
+[
+  {
+    "name": "Barbell Bench Press",
+    "targetMuscleGroup": "Chest",
+    "secondaryMuscleGroups": ["Triceps", "Front Delts"],
+    "type": "weight_reps",
+    "instructions": "Lie flat on a bench, grip the barbell slightly wider than shoulder-width. Lower the bar to your mid-chest and press it back up until your arms are fully extended."
+  },
+  {
+    "name": "Dumbbell Bench Press",
+    "targetMuscleGroup": "Chest",
+    "secondaryMuscleGroups": ["Triceps", "Front Delts"],
+    "type": "weight_reps",
+    "instructions": "Lie flat on a bench with a dumbbell in each hand. Lower the dumbbells to the sides of your chest, then press them back up until your arms are fully extended."
+  },
+  {
+    "name": "Incline Barbell Bench Press",
+    "targetMuscleGroup": "Chest",
+    "secondaryMuscleGroups": ["Triceps", "Front Delts"],
+    "type": "weight_reps",
+    "instructions": "Lie on an incline bench (30-45 degrees). Grip the barbell slightly wider than shoulder-width. Lower the bar to your upper chest and press it back up."
+  },
+  {
+    "name": "Incline Dumbbell Bench Press",
+    "targetMuscleGroup": "Chest",
+    "secondaryMuscleGroups": ["Triceps", "Front Delts"],
+    "type": "weight_reps",
+    "instructions": "Lie on an incline bench with a dumbbell in each hand. Lower the dumbbells to the sides of your upper chest, then press them back up."
+  },
+  {
+    "name": "Decline Barbell Bench Press",
+    "targetMuscleGroup": "Chest",
+    "secondaryMuscleGroups": ["Triceps", "Front Delts"],
+    "type": "weight_reps",
+    "instructions": "Lie on a decline bench. Grip the barbell and lower it to your lower chest, then press it back up."
+  },
+  {
+    "name": "Close Grip Barbell Bench Press",
+    "targetMuscleGroup": "Triceps",
+    "secondaryMuscleGroups": ["Chest", "Front Delts"],
+    "type": "weight_reps",
+    "instructions": "Lie flat on a bench and grip the barbell with your hands shoulder-width apart or slightly narrower. Lower the bar to your chest and press back up, keeping your elbows close to your body."
+  },
+  {
+    "name": "Dumbbell Fly",
+    "targetMuscleGroup": "Chest",
+    "secondaryMuscleGroups": ["Front Delts"],
+    "type": "weight_reps",
+    "instructions": "Lie flat on a bench with a dumbbell in each hand, arms extended above you with a slight bend. Lower your arms out to the sides in a wide arc, then bring them back to the starting position."
+  },
+  {
+    "name": "Cable Crossover",
+    "targetMuscleGroup": "Chest",
+    "secondaryMuscleGroups": [],
+    "type": "weight_reps",
+    "instructions": "Stand in the middle of a cable machine. Grab the handles from the high pulleys, and with a slight bend in your elbows, bring your hands together in front of your chest."
+  },
+  {
+    "name": "Push-Up",
+    "targetMuscleGroup": "Chest",
+    "secondaryMuscleGroups": ["Triceps", "Shoulders", "Core"],
+    "type": "bodyweight_reps",
+    "instructions": "Start in a high plank position. Lower your body until your chest nearly touches the floor, then push back up to the starting position."
+  },
+  {
+    "name": "Dip",
+    "targetMuscleGroup": "Triceps",
+    "secondaryMuscleGroups": ["Chest", "Shoulders"],
+    "type": "bodyweight_reps",
+    "instructions": "Grip parallel bars and lift your body. Lower your body by bending your elbows until your shoulders are below your elbows, then press back up."
+  },
+  {
+    "name": "Barbell Back Squat",
+    "targetMuscleGroup": "Quads",
+    "secondaryMuscleGroups": ["Glutes", "Hamstrings", "Core"],
+    "type": "weight_reps",
+    "instructions": "Place a barbell on your upper back. Squat down by bending your hips and knees until your thighs are at least parallel to the floor, then stand back up."
+  },
+  {
+    "name": "Front Squat",
+    "targetMuscleGroup": "Quads",
+    "secondaryMuscleGroups": ["Core", "Glutes", "Upper Back"],
+    "type": "weight_reps",
+    "instructions": "Hold a barbell across the front of your shoulders with a clean grip. Squat down, keeping your torso upright, until your thighs are parallel to the floor."
+  },
+  {
+    "name": "Goblet Squat",
+    "targetMuscleGroup": "Quads",
+    "secondaryMuscleGroups": ["Glutes", "Core"],
+    "type": "weight_reps",
+    "instructions": "Hold a single dumbbell or kettlebell vertically against your chest. Squat down until your hips are below your knees, then drive back up."
+  },
+  {
+    "name": "Bulgarian Split Squat",
+    "targetMuscleGroup": "Quads",
+    "secondaryMuscleGroups": ["Glutes", "Hamstrings"],
+    "type": "weight_reps",
+    "instructions": "Place the top of one foot on a bench behind you. Hold dumbbells in each hand and lower your hips until your front thigh is parallel to the floor."
+  },
+  {
+    "name": "Lunge",
+    "targetMuscleGroup": "Quads",
+    "secondaryMuscleGroups": ["Glutes", "Hamstrings"],
+    "type": "weight_reps",
+    "instructions": "Step forward with one leg and lower your hips until both knees are bent at a 90-degree angle. Push off your front foot to return to the starting position. Can be done with bodyweight or weights."
+  },
+  {
+    "name": "Leg Press",
+    "targetMuscleGroup": "Quads",
+    "secondaryMuscleGroups": ["Glutes", "Hamstrings"],
+    "type": "weight_reps",
+    "instructions": "Sit in a leg press machine with your feet on the platform. Push the platform away by extending your knees. Do not lock your knees at the top. Lower the weight with control."
+  },
+  {
+    "name": "Leg Extension",
+    "targetMuscleGroup": "Quads",
+    "secondaryMuscleGroups": [],
+    "type": "weight_reps",
+    "instructions": "Sit on a leg extension machine and place your ankles under the pad. Extend your legs until they are straight, then lower the weight back down."
+  },
+  {
+    "name": "Hamstring Curl",
+    "targetMuscleGroup": "Hamstrings",
+    "secondaryMuscleGroups": [],
+    "type": "weight_reps",
+    "instructions": "Lie face down on a hamstring curl machine with your ankles under the pad. Curl your legs up towards your glutes, then lower the weight back down."
+  },
+  {
+    "name": "Romanian Deadlift",
+    "targetMuscleGroup": "Hamstrings",
+    "secondaryMuscleGroups": ["Glutes", "Lower Back"],
+    "type": "weight_reps",
+    "instructions": "Hold a barbell or dumbbells in front of your thighs. Hinge at your hips, keeping your legs relatively straight (slight knee bend), and lower the weight. Go as far as your flexibility allows, then return to the starting position."
+  },
+  {
+    "name": "Conventional Deadlift",
+    "targetMuscleGroup": "Back",
+    "secondaryMuscleGroups": ["Glutes", "Hamstrings", "Quads", "Core"],
+    "type": "weight_reps",
+    "instructions": "Stand with your mid-foot under the barbell. Hinge at the hips, grip the bar, and lift by extending your hips and knees. Keep your back straight throughout the lift."
+  },
+  {
+    "name": "Sumo Deadlift",
+    "targetMuscleGroup": "Glutes",
+    "secondaryMuscleGroups": ["Hamstrings", "Quads", "Back"],
+    "type": "weight_reps",
+    "instructions": "Take a wide stance with your toes pointed out. Grip the barbell inside your legs. Lift by extending your hips and knees, keeping your chest up and back straight."
+  },
+  {
+    "name": "Pull-Up",
+    "targetMuscleGroup": "Back",
+    "secondaryMuscleGroups": ["Biceps", "Forearms"],
+    "type": "bodyweight_reps",
+    "instructions": "Hang from a pull-up bar with an overhand grip, slightly wider than shoulder-width. Pull your body up until your chin is over the bar, then lower yourself back down with control."
+  },
+  {
+    "name": "Chin-Up",
+    "targetMuscleGroup": "Back",
+    "secondaryMuscleGroups": ["Biceps", "Forearms"],
+    "type": "bodyweight_reps",
+    "instructions": "Hang from a pull-up bar with an underhand grip, shoulder-width apart. Pull your body up until your chin is over the bar."
+  },
+  {
+    "name": "Lat Pulldown",
+    "targetMuscleGroup": "Back",
+    "secondaryMuscleGroups": ["Biceps"],
+    "type": "weight_reps",
+    "instructions": "Sit at a lat pulldown machine, securing your knees. Grasp the bar with a wide grip. Pull the bar down to your upper chest, squeezing your shoulder blades together."
+  },
+  {
+    "name": "Barbell Row",
+    "targetMuscleGroup": "Back",
+    "secondaryMuscleGroups": ["Biceps", "Lower Back"],
+    "type": "weight_reps",
+    "instructions": "Bend at your hips and knees, keeping your back straight, until your torso is nearly parallel to the floor. Pull the barbell up towards your upper waist."
+  },
+  {
+    "name": "Dumbbell Row",
+    "targetMuscleGroup": "Back",
+    "secondaryMuscleGroups": ["Biceps"],
+    "type": "weight_reps",
+    "instructions": "Place one knee and one hand on a bench. Hold a dumbbell in the opposite hand and pull it up to the side of your chest."
+  },
+  {
+    "name": "T-Bar Row",
+    "targetMuscleGroup": "Back",
+    "secondaryMuscleGroups": ["Biceps", "Lower Back"],
+    "type": "weight_reps",
+    "instructions": "Load a T-bar machine or place one end of a barbell in a corner. Stand over the bar, grip the handle, and pull the weight up towards your chest."
+  },
+  {
+    "name": "Seated Cable Row",
+    "targetMuscleGroup": "Back",
+    "secondaryMuscleGroups": ["Biceps"],
+    "type": "weight_reps",
+    "instructions": "Sit at a cable row machine with your feet on the platform. Grab the handle and pull it towards your abdomen, squeezing your shoulder blades."
+  },
+  {
+    "name": "Overhead Press",
+    "targetMuscleGroup": "Shoulders",
+    "secondaryMuscleGroups": ["Triceps", "Core"],
+    "type": "weight_reps",
+    "instructions": "Stand with the barbell on your front shoulders. Press the bar directly overhead until your arms are fully extended. Lower it back to the starting position."
+  },
+  {
+    "name": "Seated Dumbbell Shoulder Press",
+    "targetMuscleGroup": "Shoulders",
+    "secondaryMuscleGroups": ["Triceps"],
+    "type": "weight_reps",
+    "instructions": "Sit on a bench with back support, holding a dumbbell in each hand at shoulder height. Press the dumbbells overhead until your arms are fully extended."
+  },
+  {
+    "name": "Arnold Press",
+    "targetMuscleGroup": "Shoulders",
+    "secondaryMuscleGroups": ["Triceps"],
+    "type": "weight_reps",
+    "instructions": "Sit on a bench holding dumbbells in front of your shoulders, palms facing your body. Press the weights up while rotating your palms to face forward. Reverse the motion on the way down."
+  },
+  {
+    "name": "Dumbbell Lateral Raise",
+    "targetMuscleGroup": "Shoulders",
+    "secondaryMuscleGroups": [],
+    "type": "weight_reps",
+    "instructions": "Stand holding a dumbbell in each hand at your sides. With a slight bend in your elbows, raise your arms out to your sides until they are parallel to the floor."
+  },
+  {
+    "name": "Dumbbell Front Raise",
+    "targetMuscleGroup": "Shoulders",
+    "secondaryMuscleGroups": [],
+    "type": "weight_reps",
+    "instructions": "Stand holding a dumbbell in each hand in front of your thighs. Raise one dumbbell at a time straight out in front of you to shoulder height."
+  },
+  {
+    "name": "Bent-Over Dumbbell Reverse Fly",
+    "targetMuscleGroup": "Shoulders",
+    "secondaryMuscleGroups": ["Back"],
+    "type": "weight_reps",
+    "instructions": "Bend at the waist with a dumbbell in each hand. With a slight bend in your elbows, raise your arms out to the sides, squeezing your shoulder blades."
+  },
+  {
+    "name": "Face Pull",
+    "targetMuscleGroup": "Shoulders",
+    "secondaryMuscleGroups": ["Back"],
+    "type": "weight_reps",
+    "instructions": "Set a rope attachment on a cable machine at head height. Pull the rope towards your face, separating your hands and externally rotating your shoulders."
+  },
+  {
+    "name": "Barbell Bicep Curl",
+    "targetMuscleGroup": "Biceps",
+    "secondaryMuscleGroups": ["Forearms"],
+    "type": "weight_reps",
+    "instructions": "Stand holding a barbell with an underhand grip. Curl the bar up towards your shoulders, squeezing your biceps. Lower with control."
+  },
+  {
+    "name": "Dumbbell Bicep Curl",
+    "targetMuscleGroup": "Biceps",
+    "secondaryMuscleGroups": ["Forearms"],
+    "type": "weight_reps",
+    "instructions": "Stand or sit, holding a dumbbell in each hand with an underhand grip. Curl the weights up towards your shoulders, squeezing your biceps. Lower with control."
+  },
+  {
+    "name": "Hammer Curl",
+    "targetMuscleGroup": "Biceps",
+    "secondaryMuscleGroups": ["Forearms"],
+    "type": "weight_reps",
+    "instructions": "Hold a dumbbell in each hand with a neutral grip (palms facing each other). Curl the weights up, keeping your palms facing in."
+  },
+  {
+    "name": "Preacher Curl",
+    "targetMuscleGroup": "Biceps",
+    "secondaryMuscleGroups": [],
+    "type": "weight_reps",
+    "instructions": "Sit at a preacher curl bench, resting your upper arms on the pad. Curl a barbell or dumbbell up towards your shoulders."
+  },
+  {
+    "name": "Tricep Pushdown",
+    "targetMuscleGroup": "Triceps",
+    "secondaryMuscleGroups": [],
+    "type": "weight_reps",
+    "instructions": "Attach a bar or rope to a high cable pulley. Grasp the attachment and push it down until your arms are fully extended. Return to the starting position slowly."
+  },
+  {
+    "name": "Skull Crusher",
+    "targetMuscleGroup": "Triceps",
+    "secondaryMuscleGroups": [],
+    "type": "weight_reps",
+    "instructions": "Lie on a flat bench holding a barbell or EZ-bar above your chest with a narrow grip. Lower the bar towards your forehead by bending your elbows, then extend your arms to return to the start."
+  },
+  {
+    "name": "Overhead Tricep Extension",
+    "targetMuscleGroup": "Triceps",
+    "secondaryMuscleGroups": [],
+    "type": "weight_reps",
+    "instructions": "Sit or stand, holding a single dumbbell with both hands overhead. Lower the dumbbell behind your head by bending your elbows, then extend your arms."
+  },
+  {
+    "name": "Plank",
+    "targetMuscleGroup": "Core",
+    "secondaryMuscleGroups": ["Shoulders", "Back"],
+    "type": "bodyweight_time",
+    "instructions": "Hold a push-up position, but with your weight on your forearms instead of your hands. Keep your body in a straight line from head to heels."
+  },
+  {
+    "name": "Hanging Leg Raise",
+    "targetMuscleGroup": "Core",
+    "secondaryMuscleGroups": ["Hip Flexors"],
+    "type": "bodyweight_reps",
+    "instructions": "Hang from a pull-up bar. Keeping your legs straight, raise them up until they are parallel to the floor. Lower them back down with control."
+  },
+  {
+    "name": "Crunch",
+    "targetMuscleGroup": "Core",
+    "secondaryMuscleGroups": [],
+    "type": "bodyweight_reps",
+    "instructions": "Lie on your back with your knees bent. Place your hands behind your head and lift your upper back off the floor."
+  },
+  {
+    "name": "Russian Twist",
+    "targetMuscleGroup": "Core",
+    "secondaryMuscleGroups": [],
+    "type": "weight_reps",
+    "instructions": "Sit on the floor with your knees bent and feet elevated. Hold a weight and twist your torso from side to side."
+  },
+  {
+    "name": "Ab Rollout",
+    "targetMuscleGroup": "Core",
+    "secondaryMuscleGroups": ["Shoulders", "Back"],
+    "type": "bodyweight_reps",
+    "instructions": "Kneel on the floor and hold an ab wheel or loaded barbell. Roll it forward, extending your body, then pull it back to the starting position."
+  },
+  {
+    "name": "Calf Raise",
+    "targetMuscleGroup": "Calves",
+    "secondaryMuscleGroups": [],
+    "type": "weight_reps",
+    "instructions": "Stand with the balls of your feet on an elevated surface. Lower your heels, then press up onto your toes. Can be done with weights."
+  },
+  {
+    "name": "Running",
+    "targetMuscleGroup": "Cardio",
+    "secondaryMuscleGroups": ["Legs", "Core"],
+    "type": "cardio_time_distance",
+    "instructions": "Run at a steady pace on a treadmill, track, or outdoors."
+  },
+  {
+    "name": "Cycling",
+    "targetMuscleGroup": "Cardio",
+    "secondaryMuscleGroups": ["Quads", "Hamstrings"],
+    "type": "cardio_time_distance",
+    "instructions": "Ride a stationary or outdoor bike. Adjust resistance and speed for intensity."
+  },
+  {
+    "name": "Rowing",
+    "targetMuscleGroup": "Cardio",
+    "secondaryMuscleGroups": ["Back", "Legs", "Biceps", "Core"],
+    "type": "cardio_time_distance",
+    "instructions": "Use a rowing machine (ergometer). Drive powerfully with your legs, then pull the handle towards your chest. Extend your arms, then bend your knees to return to the start."
+  },
+  {
+    "name": "Swimming",
+    "targetMuscleGroup": "Cardio",
+    "secondaryMuscleGroups": ["Full Body"],
+    "type": "cardio_time_distance",
+    "instructions": "Swim laps in a pool using a variety of strokes like freestyle, breaststroke, or backstroke."
+  },
+  {
+    "name": "Jump Rope",
+    "targetMuscleGroup": "Cardio",
+    "secondaryMuscleGroups": ["Calves", "Coordination"],
+    "type": "cardio_time",
+    "instructions": "Use a jump rope, performing various techniques like single unders, double unders, or crossovers for a set duration."
+  },
+  {
+    "name": "Snatch",
+    "targetMuscleGroup": "Full Body",
+    "secondaryMuscleGroups": ["Shoulders", "Back", "Legs"],
+    "type": "weight_reps",
+    "instructions": "Lift a barbell from the floor to an overhead position in one continuous, explosive movement. Requires significant technique and mobility."
+  },
+  {
+    "name": "Clean and Jerk",
+    "targetMuscleGroup": "Full Body",
+    "secondaryMuscleGroups": ["Shoulders", "Back", "Legs", "Triceps"],
+    "type": "weight_reps",
+    "instructions": "A two-part lift. First, lift the barbell from the floor to your shoulders (the clean). Then, press the barbell from your shoulders to an overhead position (the jerk)."
+  },
+  {
+    "name": "Power Clean",
+    "targetMuscleGroup": "Full Body",
+    "secondaryMuscleGroups": ["Back", "Legs"],
+    "type": "weight_reps",
+    "instructions": "Explosively lift a barbell from the floor to a front rack position on your shoulders, catching it in a partial squat."
+  },
+  {
+    "name": "Kettlebell Swing",
+    "targetMuscleGroup": "Glutes",
+    "secondaryMuscleGroups": ["Hamstrings", "Back", "Core"],
+    "type": "weight_reps",
+    "instructions": "Stand with feet shoulder-width apart, holding a kettlebell with both hands. Hinge at your hips to swing the kettlebell between your legs, then explosively extend your hips to swing it up to chest level."
+  },
+  {
+    "name": "Kettlebell Goblet Squat",
+    "targetMuscleGroup": "Quads",
+    "secondaryMuscleGroups": ["Glutes", "Core"],
+    "type": "weight_reps",
+    "instructions": "Hold a kettlebell by the horns against your chest. Squat down until your hips are below your knees, keeping your chest up."
+  },
+  {
+    "name": "Kettlebell Snatch",
+    "targetMuscleGroup": "Full Body",
+    "secondaryMuscleGroups": ["Shoulders", "Back"],
+    "type": "weight_reps",
+    "instructions": "Swing a kettlebell between your legs and then pull it upwards in one fluid motion, punching your hand towards the ceiling to catch it overhead."
+  },
+  {
+    "name": "Box Jump",
+    "targetMuscleGroup": "Legs",
+    "secondaryMuscleGroups": ["Glutes", "Core"],
+    "type": "bodyweight_reps",
+    "instructions": "Stand in front of a sturdy box or platform. Jump explosively onto the box, landing softly with your knees bent. Step or jump back down."
+  },
+  {
+    "name": "Burpee",
+    "targetMuscleGroup": "Full Body",
+    "secondaryMuscleGroups": ["Cardio", "Core"],
+    "type": "bodyweight_reps",
+    "instructions": "From a standing position, drop into a squat, place your hands on the ground, kick your feet back into a push-up position, perform a push-up, return to the squat, and jump up explosively."
+  },
+  {
+    "name": "Wall Ball",
+    "targetMuscleGroup": "Full Body",
+    "secondaryMuscleGroups": ["Quads", "Shoulders", "Glutes"],
+    "type": "weight_reps",
+    "instructions": "Hold a medicine ball at your chest and perform a squat. As you stand up, throw the ball to a target on a wall, then catch it and repeat."
+  },
+  {
+    "name": "Thruster",
+    "targetMuscleGroup": "Full Body",
+    "secondaryMuscleGroups": ["Quads", "Shoulders", "Glutes", "Triceps"],
+    "type": "weight_reps",
+    "instructions": "Hold a barbell in a front rack position. Perform a front squat, and in one fluid motion, use the momentum from standing up to press the barbell overhead."
+  },
+  {
+    "name": "Farmer's Walk",
+    "targetMuscleGroup": "Grip",
+    "secondaryMuscleGroups": ["Core", "Back", "Legs"],
+    "type": "weight_distance",
+    "instructions": "Hold a heavy dumbbell or kettlebell in each hand. Walk for a set distance or time, keeping your posture upright and core engaged."
+  },
+  {
+    "name": "Sled Push",
+    "targetMuscleGroup": "Legs",
+    "secondaryMuscleGroups": ["Core", "Shoulders", "Cardio"],
+    "type": "weight_distance",
+    "instructions": "Load a sled with weight. Grip the handles and drive the sled forward by pushing with your legs. Keep your back straight and core tight."
+  },
+  {
+    "name": "Sled Pull",
+    "targetMuscleGroup": "Back",
+    "secondaryMuscleGroups": ["Legs", "Biceps", "Core", "Cardio"],
+    "type": "weight_distance",
+    "instructions": "Attach a rope or straps to a sled. Facing away from the sled, pull it towards you, or facing the sled, pull it by walking backwards."
+  },
+  {
+    "name": "Tire Flip",
+    "targetMuscleGroup": "Full Body",
+    "secondaryMuscleGroups": ["Legs", "Back", "Biceps"],
+    "type": "weight_reps",
+    "instructions": "Squat down and grip the bottom of a large tire. Lift it using your legs and hips, then push it over. Requires proper form to avoid injury."
+  },
+  {
+    "name": "Battle Ropes",
+    "targetMuscleGroup": "Cardio",
+    "secondaryMuscleGroups": ["Shoulders", "Back", "Core", "Grip"],
+    "type": "cardio_time",
+    "instructions": "Hold the ends of two heavy ropes. Create waves, slams, or other patterns for a set duration."
+  },
+  {
+    "name": "Medicine Ball Slam",
+    "targetMuscleGroup": "Core",
+    "secondaryMuscleGroups": ["Back", "Shoulders"],
+    "type": "weight_reps",
+    "instructions": "Lift a medicine ball overhead and slam it onto the ground in front of you as hard as you can. Catch the ball on the bounce and repeat."
+  },
+  {
+    "name": "Broad Jump",
+    "targetMuscleGroup": "Legs",
+    "secondaryMuscleGroups": ["Glutes"],
+    "type": "bodyweight_distance",
+    "instructions": "Stand with your feet shoulder-width apart. Swing your arms and hinge at the hips, then jump forward as far as possible, landing with your knees bent."
+  },
+  {
+    "name": "High Knees",
+    "targetMuscleGroup": "Cardio",
+    "secondaryMuscleGroups": ["Legs", "Core"],
+    "type": "bodyweight_time",
+    "instructions": "Run in place, bringing your knees up towards your chest as high as possible."
+  },
+  {
+    "name": "Jumping Jack",
+    "targetMuscleGroup": "Cardio",
+    "secondaryMuscleGroups": ["Legs", "Shoulders"],
+    "type": "bodyweight_time",
+    "instructions": "Jump while spreading your legs and bringing your arms overhead, then jump back to the starting position."
+  },
+  {
+    "name": "Mountain Climber",
+    "targetMuscleGroup": "Core",
+    "secondaryMuscleGroups": ["Cardio", "Shoulders", "Legs"],
+    "type": "bodyweight_time",
+    "instructions": "Start in a high plank position. Alternate bringing one knee towards your chest at a time, as if you are running in place."
+  },
+  {
+    "name": "Handstand Push-Up",
+    "targetMuscleGroup": "Shoulders",
+    "secondaryMuscleGroups": ["Triceps", "Core"],
+    "type": "bodyweight_reps",
+    "instructions": "Kick up into a handstand against a wall. Lower your body by bending your elbows until your head touches the ground, then press back up."
+  },
+  {
+    "name": "Muscle-Up",
+    "targetMuscleGroup": "Back",
+    "secondaryMuscleGroups": ["Biceps", "Triceps", "Chest", "Shoulders"],
+    "type": "bodyweight_reps",
+    "instructions": "A complex movement combining a pull-up and a dip. Explosively pull your body up over the bar or rings and press to extend your arms."
+  },
+  {
+    "name": "Pistol Squat",
+    "targetMuscleGroup": "Quads",
+    "secondaryMuscleGroups": ["Glutes", "Core", "Balance"],
+    "type": "bodyweight_reps",
+    "instructions": "Balance on one leg and squat down as low as possible, keeping the other leg extended out in front of you."
+  },
+  {
+    "name": "Good Morning",
+    "targetMuscleGroup": "Hamstrings",
+    "secondaryMuscleGroups": ["Lower Back", "Glutes"],
+    "type": "weight_reps",
+    "instructions": "Place a barbell on your upper back. With a slight bend in your knees, hinge at your hips and lower your torso until it's parallel to the floor."
+  },
+  {
+    "name": "Hip Thrust",
+    "targetMuscleGroup": "Glutes",
+    "secondaryMuscleGroups": ["Hamstrings"],
+    "type": "weight_reps",
+    "instructions": "Sit on the floor with your upper back against a bench. Place a barbell across your hips. Drive your hips up until your body forms a straight line from your shoulders to your knees."
+  },
+  {
+    "name": "Glute Bridge",
+    "targetMuscleGroup": "Glutes",
+    "secondaryMuscleGroups": ["Hamstrings"],
+    "type": "bodyweight_reps",
+    "instructions": "Lie on your back with your knees bent and feet flat on the floor. Raise your hips off the floor until your body forms a straight line, squeezing your glutes."
+  },
+  {
+    "name": "Upright Row",
+    "targetMuscleGroup": "Shoulders",
+    "secondaryMuscleGroups": ["Traps", "Biceps"],
+    "type": "weight_reps",
+    "instructions": "Hold a barbell or dumbbells with a narrow grip. Pull the weight straight up to your chin, leading with your elbows."
+  },
+  {
+    "name": "Shrug",
+    "targetMuscleGroup": "Traps",
+    "secondaryMuscleGroups": [],
+    "type": "weight_reps",
+    "instructions": "Hold a heavy barbell or dumbbells at your sides. Elevate your shoulders as high as possible, then lower them back down."
+  },
+  {
+    "name": "Windshield Wiper",
+    "targetMuscleGroup": "Core",
+    "secondaryMuscleGroups": [],
+    "type": "bodyweight_reps",
+    "instructions": "Lie on your back and extend your legs straight up. Lower your legs to one side, almost touching the floor, then raise them back to the center and repeat on the other side."
+  },
+  {
+    "name": "Dragon Flag",
+    "targetMuscleGroup": "Core",
+    "secondaryMuscleGroups": [],
+    "type": "bodyweight_reps",
+    "instructions": "Lie on a bench and grip it behind your head. Keeping your body perfectly straight, lower it from a vertical position until it's just above the bench, then raise it back up."
+  },
+  {
+    "name": "Box Squat",
+    "targetMuscleGroup": "Quads",
+    "secondaryMuscleGroups": ["Glutes", "Hamstrings"],
+    "type": "weight_reps",
+    "instructions": "Place a box or bench behind you. Perform a squat until you are seated on the box, then pause and drive back up."
+  },
+  {
+    "name": "Zercher Squat",
+    "targetMuscleGroup": "Quads",
+    "secondaryMuscleGroups": ["Core", "Upper Back", "Biceps"],
+    "type": "weight_reps",
+    "instructions": "Hold a barbell in the crook of your elbows. Squat down, keeping your torso as upright as possible."
+  },
+  {
+    "name": "Single-Leg RDL",
+    "targetMuscleGroup": "Hamstrings",
+    "secondaryMuscleGroups": ["Glutes", "Balance"],
+    "type": "weight_reps",
+    "instructions": "Hold a weight in one hand and balance on the opposite leg. Hinge at your hip, extending the non-supporting leg behind you, and lower the weight towards the ground."
+  },
+  {
+    "name": "Nordic Hamstring Curl",
+    "targetMuscleGroup": "Hamstrings",
+    "secondaryMuscleGroups": ["Glutes"],
+    "type": "bodyweight_reps",
+    "instructions": "Kneel on a padded surface and have a partner hold your ankles. Slowly lower your body towards the floor, controlling the movement with your hamstrings. Push back up."
+  },
+  {
+    "name": "Sissy Squat",
+    "targetMuscleGroup": "Quads",
+    "secondaryMuscleGroups": ["Core"],
+    "type": "bodyweight_reps",
+    "instructions": "A bodyweight squat variation where you lean your torso back while rising onto your toes, placing extreme emphasis on the quads. Requires balance and control."
+  },
+  {
+    "name": "Dumbbell Pullover",
+    "targetMuscleGroup": "Back",
+    "secondaryMuscleGroups": ["Chest", "Triceps"],
+    "type": "weight_reps",
+    "instructions": "Lie with your upper back across a bench. Hold a single dumbbell over your chest. Lower the weight in an arc behind your head, then pull it back to the starting position."
+  },
+  {
+    "name": "Landmine Press",
+    "targetMuscleGroup": "Shoulders",
+    "secondaryMuscleGroups": ["Chest", "Triceps"],
+    "type": "weight_reps",
+    "instructions": "Place one end of a barbell in a landmine attachment or corner. Kneel or stand, and press the free end of the barbell up and away from your chest."
+  },
+  {
+    "name": "Clean Pull",
+    "targetMuscleGroup": "Back",
+    "secondaryMuscleGroups": ["Legs", "Traps"],
+    "type": "weight_reps",
+    "instructions": "The first phase of a clean. Explosively pull the barbell from the floor to your upper thighs or waist, extending your hips and shrugging, but without catching the bar."
+  },
+  {
+    "name": "Snatch Grip Deadlift",
+    "targetMuscleGroup": "Back",
+    "secondaryMuscleGroups": ["Hamstrings", "Glutes", "Grip"],
+    "type": "weight_reps",
+    "instructions": "Perform a deadlift with a very wide (snatch) grip. This increases the range of motion and demand on the back and legs."
+  },
+  {
+    "name": "Deficit Deadlift",
+    "targetMuscleGroup": "Back",
+    "secondaryMuscleGroups": ["Legs", "Glutes"],
+    "type": "weight_reps",
+    "instructions": "Perform a deadlift while standing on a small elevated platform (1-3 inches). This increases the range of motion and difficulty."
+  },
+  {
+    "name": "Pause Squat",
+    "targetMuscleGroup": "Quads",
+    "secondaryMuscleGroups": ["Glutes", "Core"],
+    "type": "weight_reps",
+    "instructions": "Perform a regular squat, but pause for 1-3 seconds at the bottom of the movement before driving back up."
+  },
+  {
+    "name": "Pin Press",
+    "targetMuscleGroup": "Chest",
+    "secondaryMuscleGroups": ["Triceps", "Shoulders"],
+    "type": "weight_reps",
+    "instructions": "Set the safety pins in a power rack to a specific height (e.g., mid-chest). Start the bench press from a dead stop off the pins, focusing on concentric strength."
+  },
+  {
+    "name": "Elliptical Trainer",
+    "targetMuscleGroup": "Cardio",
+    "secondaryMuscleGroups": ["Legs", "Glutes"],
+    "type": "cardio_time_distance",
+    "instructions": "Use an elliptical machine, which provides a low-impact cardiovascular workout."
+  },
+  {
+    "name": "Stair Climber",
+    "targetMuscleGroup": "Cardio",
+    "secondaryMuscleGroups": ["Quads", "Glutes", "Calves"],
+    "type": "cardio_time",
+    "instructions": "Use a stair climbing machine to simulate walking up stairs for an intense cardio and leg workout."
+  },
+  {
+    "name": "Agility Ladder Drill",
+    "targetMuscleGroup": "Coordination",
+    "secondaryMuscleGroups": ["Cardio", "Calves"],
+    "type": "bodyweight_time",
+    "instructions": "Perform various footwork patterns through an agility ladder to improve speed, coordination, and quickness."
+  },
+  {
+    "name": "Plyometric Push-Up",
+    "targetMuscleGroup": "Chest",
+    "secondaryMuscleGroups": ["Triceps", "Shoulders"],
+    "type": "bodyweight_reps",
+    "instructions": "Perform a push-up, but explode upwards with enough force for your hands to leave the ground. Clap your hands if possible before landing."
+  },
+  {
+    "name": "Turkish Get-Up",
+    "targetMuscleGroup": "Full Body",
+    "secondaryMuscleGroups": ["Core", "Shoulders"],
+    "type": "weight_reps",
+    "instructions": "A complex movement involving lying on the floor holding a kettlebell or dumbbell and standing up, then returning to the start, all while keeping the weight stabilized overhead."
+  },
+  {
+    "name": "Rack Pull",
+    "targetMuscleGroup": "Back",
+    "secondaryMuscleGroups": ["Traps", "Glutes"],
+    "type": "weight_reps",
+    "instructions": "Perform the top portion of a deadlift by setting the barbell on the safety pins of a power rack, typically just below the knees. This allows you to overload the upper back and traps."
+  },
+  {
+    "name": "A-Skip",
+    "targetMuscleGroup": "Legs",
+    "secondaryMuscleGroups": ["Core", "Coordination", "Hip Flexors"],
+    "type": "cardio_distance",
+    "instructions": "A running drill. Drive your knee up to a parallel position with the ground, then drive your foot down. Alternate legs, focusing on a powerful, piston-like motion over a set distance."
+  },
+  {
+    "name": "B-Skip",
+    "targetMuscleGroup": "Hamstrings",
+    "secondaryMuscleGroups": ["Legs", "Coordination"],
+    "type": "cardio_distance",
+    "instructions": "Perform an A-Skip, but after the knee is raised, kick your lower leg forward and then pull it back down to the ground in a pawing motion. Focus on hamstring engagement and quick ground contact."
+  },
+  {
+    "name": "Butt Kicks",
+    "targetMuscleGroup": "Hamstrings",
+    "secondaryMuscleGroups": ["Cardio", "Quads"],
+    "type": "cardio_distance",
+    "instructions": "Run in place or moving forward, focusing on bringing your heels up to your glutes as quickly as possible. Keep your torso upright."
+  },
+  {
+    "name": "Bounding",
+    "targetMuscleGroup": "Legs",
+    "secondaryMuscleGroups": ["Glutes", "Power"],
+    "type": "cardio_distance",
+    "instructions": "An explosive running drill. Exaggerate your stride, driving off each foot to achieve maximum distance and height with each step. Focus on power and triple extension of the ankle, knee, and hip."
+  },
+  {
+    "name": "Hill Sprints",
+    "targetMuscleGroup": "Legs",
+    "secondaryMuscleGroups": ["Cardio", "Glutes", "Power"],
+    "type": "cardio_distance",
+    "instructions": "Find a moderate to steep hill. Sprint up the hill for a short distance (20-60 meters), focusing on powerful leg drive and arm action. Walk back down to recover."
+  },
+  {
+    "name": "Sprint",
+    "targetMuscleGroup": "Full Body",
+    "secondaryMuscleGroups": ["Legs", "Cardio", "Core"],
+    "type": "cardio_time_distance",
+    "instructions": "Run a specific distance (e.g., 60m, 100m, 200m) at maximum or near-maximum effort. Focus on proper sprinting form."
+  },
+  {
+    "name": "Crouching Start Practice",
+    "targetMuscleGroup": "Full Body",
+    "secondaryMuscleGroups": ["Power", "Legs", "Coordination"],
+    "type": "bodyweight_reps",
+    "instructions": "From a crouching position or starting blocks, explode out into a sprint for 10-20 meters. Focus on a powerful initial push and low body angle during acceleration."
+  },
+  {
+    "name": "Strides",
+    "targetMuscleGroup": "Cardio",
+    "secondaryMuscleGroups": ["Legs", "Technique"],
+    "type": "cardio_distance",
+    "instructions": "Run a moderate distance (e.g., 100 meters) at about 80-90% of your maximum speed. Focus on maintaining a long, relaxed, and efficient running form. Not an all-out sprint."
+  }
+]
