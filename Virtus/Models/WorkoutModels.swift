@@ -62,6 +62,7 @@ final class WorkoutSet {
     @Attribute(.unique) var id: UUID
     var orderIndex: Int
     var isWarmup: Bool
+    var isCompleted: Bool
     var weight: Double?
     var reps: Int?
     var timeSeconds: Double?
@@ -70,10 +71,11 @@ final class WorkoutSet {
     
     var workoutExercise: WorkoutExercise?
     
-    init(orderIndex: Int, isWarmup: Bool = false, weight: Double? = nil, reps: Int? = nil, timeSeconds: Double? = nil, distanceMeters: Double? = nil, rpe: Double? = nil) {
+    init(orderIndex: Int, isWarmup: Bool = false, isCompleted: Bool = false, weight: Double? = nil, reps: Int? = nil, timeSeconds: Double? = nil, distanceMeters: Double? = nil, rpe: Double? = nil) {
         self.id = UUID()
         self.orderIndex = orderIndex
         self.isWarmup = isWarmup
+        self.isCompleted = isCompleted
         self.weight = weight
         self.reps = reps
         self.timeSeconds = timeSeconds

@@ -24,14 +24,7 @@ struct VirtusApp: App {
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
         do {
-            let container = try ModelContainer(for: schema, configurations: [modelConfiguration])
-            
-            // Seed database
-            Task { @MainActor in
-                ExerciseSeeder.seed(context: container.mainContext)
-            }
-            
-            return container
+            return try ModelContainer(for: schema, configurations: [modelConfiguration])
         } catch {
             fatalError("Could not create ModelContainer: \(error)")
         }

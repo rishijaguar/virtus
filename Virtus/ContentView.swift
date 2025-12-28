@@ -13,9 +13,14 @@ struct ContentView: View {
 
     var body: some View {
         TabView {
-            Text("Coach Interface")
+            ChatView()
                 .tabItem {
                     Label("Coach", systemImage: "bubble.left.and.bubble.right.fill")
+                }
+            
+            WorkoutHomeView()
+                .tabItem {
+                    Label("Workout", systemImage: "dumbbell.fill")
                 }
             
             ExerciseListView()
@@ -23,15 +28,19 @@ struct ContentView: View {
                     Label("Exercises", systemImage: "list.bullet.rectangle.portrait.fill")
                 }
             
-            Text("History & Stats")
+            HistoryView()
                 .tabItem {
                     Label("History", systemImage: "clock.fill")
                 }
                 
-            Text("User Profile")
+            ProfileView()
                 .tabItem {
                     Label("Profile", systemImage: "person.circle.fill")
                 }
+        }
+        .task {
+            // Ensure database is seeded on app start
+            ExerciseSeeder.seed(context: modelContext)
         }
     }
 }
