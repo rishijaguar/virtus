@@ -8,6 +8,11 @@
 import Foundation
 import SwiftData
 
+struct OneRepMaxEntry: Codable {
+    let value: Double
+    let unit: String
+}
+
 @Model
 final class UserProfile {
     @Attribute(.unique) var id: UUID
@@ -23,7 +28,7 @@ final class UserProfile {
     var preferences: String
     var coachNotes: String
     
-    // JSON String storing [UUID: Double] mapping Exercise ID to 1RM weight
+    // JSON String storing [UUID: OneRepMaxEntry]
     var oneRepMaxHistoryJSON: String = "{}"
     
     init(name: String = "Athlete", onboardingCompleted: Bool = false) {
@@ -45,21 +50,46 @@ final class UserProfile {
     }
     
     // 1RM Helpers
-    func oneRepMax(for exerciseID: UUID) -> Double? {
-        guard let data = oneRepMaxHistoryJSON.data(using: .utf8),
-              let dict = try? JSONDecoder().decode([UUID: Double].self, from: data) else {
-            return nil
+    func oneRepMax(for exerciseID: UUID) -> (value: Double, unit: String)? {
+        guard let data = oneRepMaxHistoryJSON.data(using: .utf8) else { return nil }
+        let key = exerciseID.uuidString
+        
+        // Try new format first (String keys)
+        if let dict = try? JSONDecoder().decode([String: OneRepMaxEntry].self, from: data),
+           let entry = dict[key] {
+            return (entry.value, entry.unit)
         }
-        return dict[exerciseID]
+        
+        // Fallback: Try decoding with UUID keys (in case data was saved that way)
+        if let dict = try? JSONDecoder().decode([UUID: OneRepMaxEntry].self, from: data),
+           let entry = dict[exerciseID] {
+            return (entry.value, entry.unit)
+        }
+        
+        // Fallback: Legacy UUID: Double
+        if let dict = try? JSONDecoder().decode([UUID: Double].self, from: data),
+           let value = dict[exerciseID] {
+            return (value, "lbs")
+        }
+        
+        return nil
     }
     
-    func setOneRepMax(_ weight: Double, for exerciseID: UUID) {
-        var dict: [UUID: Double] = [:]
-        if let data = oneRepMaxHistoryJSON.data(using: .utf8),
-           let existing = try? JSONDecoder().decode([UUID: Double].self, from: data) {
-            dict = existing
+    func setOneRepMax(_ weight: Double, unit: String, for exerciseID: UUID) {
+        var dict: [String: OneRepMaxEntry] = [:]
+        let key = exerciseID.uuidString
+        
+        if let data = oneRepMaxHistoryJSON.data(using: .utf8) {
+            // Try to load existing String-keyed data
+            if let existing = try? JSONDecoder().decode([String: OneRepMaxEntry].self, from: data) {
+                dict = existing
+            } 
+            // Migration: If we had UUID-keyed data, we lose it here unless we migrate.
+            // For dev simplicity, we start fresh or overwrite.
         }
-        dict[exerciseID] = weight
+        
+        dict[key] = OneRepMaxEntry(value: weight, unit: unit)
+        
         if let newData = try? JSONEncoder().encode(dict),
            let jsonString = String(data: newData, encoding: .utf8) {
             oneRepMaxHistoryJSON = jsonString

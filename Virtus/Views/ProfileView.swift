@@ -33,6 +33,14 @@ struct ProfileView: View {
     }
 }
 
+// Helper for conversion
+private func convert(weight: Double, from source: String, to target: String) -> Double {
+    if source == target { return weight }
+    if source == "lbs" && target == "kg" { return weight * 0.453592 }
+    if source == "kg" && target == "lbs" { return weight * 2.20462 }
+    return weight
+}
+
 struct ProfileContent: View {
     @Bindable var userProfile: UserProfile
     let exercises: [Exercise]
@@ -60,16 +68,17 @@ struct ProfileContent: View {
                 }
                 
                 // Show top 3 maxes as summary
-                let setMaxes = exercises.compactMap { ex -> (String, Double)? in
-                    guard let max = userProfile.oneRepMax(for: ex.id) else { return nil }
-                    return (ex.name, max)
+                let setMaxes = exercises.compactMap { ex -> (String, Double, String)? in
+                    guard let entry = userProfile.oneRepMax(for: ex.id) else { return nil }
+                    let converted = convert(weight: entry.value, from: entry.unit, to: userProfile.preferredUnitRaw)
+                    return (ex.name, converted, userProfile.preferredUnitRaw)
                 }.sorted { $0.1 > $1.1 }
                 
                 ForEach(setMaxes.prefix(5), id: \.0) { item in
                     HStack {
                         Text(item.0)
                         Spacer()
-                        Text("\(Int(item.1)) \(userProfile.preferredUnitRaw)")
+                        Text("\(Int(item.1)) \(item.2)")
                             .foregroundColor(.secondary)
                     }
                 }
@@ -139,7 +148,7 @@ struct OneRepMaxEditorView: View {
                         Spacer()
                         
                         TextField("100", value: binding(for: exercise.id), format: .number)
-                            .keyboardType(.decimalPad)
+                            .keyboardType(.numberPad)
                             .multilineTextAlignment(.trailing)
                             .textFieldStyle(.roundedBorder)
                             .frame(width: 80)
@@ -157,20 +166,23 @@ struct OneRepMaxEditorView: View {
             .onAppear {
                 // Load existing maxes into local state
                 for ex in exercises {
-                    if let val = profile.oneRepMax(for: ex.id) {
-                        maxes[ex.id] = val
+                    if let entry = profile.oneRepMax(for: ex.id) {
+                        let converted = convert(weight: entry.value, from: entry.unit, to: profile.preferredUnitRaw)
+                        maxes[ex.id] = converted
                     }
                 }
             }
         }
     }
     
-    private func binding(for id: UUID) -> Binding<Double> {
+    private func binding(for id: UUID) -> Binding<Int> {
         Binding(
-            get: { maxes[id] ?? 0.0 },
+            get: { Int(round(maxes[id] ?? 0.0)) },
             set: { newValue in
-                maxes[id] = newValue
-                profile.setOneRepMax(newValue, for: id)
+                let dValue = Double(newValue)
+                maxes[id] = dValue
+                // Save with current preferred unit
+                profile.setOneRepMax(dValue, unit: profile.preferredUnitRaw, for: id)
             }
         )
     }

@@ -127,6 +127,11 @@ struct HistoryRow: View {
 
 struct WorkoutDetailView: View {
     let workout: Workout
+    @Query private var profiles: [UserProfile]
+    
+    private var preferredUnit: String {
+        profiles.first?.preferredUnitRaw ?? "lbs"
+    }
     
     var body: some View {
         List {
@@ -157,7 +162,7 @@ struct WorkoutDetailView: View {
                                 Text(set.displayIntensity ?? "-")
                                 Text(set.computedTarget ?? "-")
                                     .foregroundColor(.blue)
-                                Text(set.weight?.formatted() ?? "-")
+                                Text(formattedWeight(set.weight, from: set.unitRaw))
                                 Text(set.reps?.formatted() ?? "-")
                                 Text(set.rpe?.formatted() ?? "-")
                             }
@@ -169,6 +174,19 @@ struct WorkoutDetailView: View {
             }
         }
         .navigationTitle("Workout Details")
+    }
+    
+    private func formattedWeight(_ weight: Double?, from unit: String) -> String {
+        guard let w = weight else { return "-" }
+        let converted = convert(weight: w, from: unit, to: preferredUnit)
+        return "\(Int(converted)) \(preferredUnit)"
+    }
+    
+    private func convert(weight: Double, from source: String, to target: String) -> Double {
+        if source == target { return weight }
+        if source == "lbs" && target == "kg" { return weight * 0.453592 }
+        if source == "kg" && target == "lbs" { return weight * 2.20462 }
+        return weight
     }
     
     private func durationString(start: Date, end: Date) -> String {

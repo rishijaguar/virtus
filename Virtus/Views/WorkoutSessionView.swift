@@ -113,7 +113,7 @@ struct WorkoutExerciseRow: View {
             // Header aligning with the new spec
             HStack(spacing: 8) {
                 Text("Set").font(.caption2).frame(width: 24)
-                Text("Instr.").font(.caption2).frame(width: 45, alignment: .leading)
+                Text("Intensity").font(.caption2).frame(width: 45, alignment: .leading)
                 Text(targetColumnTitle).font(.caption2).frame(maxWidth: .infinity, alignment: .leading)
                 Text("Weight").font(.caption2).frame(width: 60)
                 Text("Reps").font(.caption2).frame(width: 40)

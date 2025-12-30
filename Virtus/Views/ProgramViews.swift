@@ -351,7 +351,6 @@ struct TemplateSetRow: View {
     }
 }
 
-// Keeping ProgramEditSheet and CreateProgramView largely similar but updating to SessionTemplate
 struct ProgramEditSheet: View {
     @Bindable var program: Program
     @Environment(\.dismiss) private var dismiss
