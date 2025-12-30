@@ -14,9 +14,9 @@ struct VirtusApp: App {
         let schema = Schema([
             Exercise.self,
             Program.self,
-            ProgramDay.self,
-            PlannedExercise.self,
-            PlannedSet.self,
+            SessionTemplate.self,
+            TemplateExercise.self,
+            TemplateSet.self,
             Workout.self,
             WorkoutExercise.self,
             WorkoutSet.self,

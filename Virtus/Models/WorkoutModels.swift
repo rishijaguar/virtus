@@ -15,17 +15,19 @@ final class Workout {
     var endTime: Date?
     var statusRaw: String
     var notes: String?
-    var programDayID: UUID?
+    
+    // Link back to the template if instantiated from one
+    var sessionTemplateID: UUID?
     
     @Relationship(deleteRule: .cascade, inverse: \WorkoutExercise.workout) 
     var exercises: [WorkoutExercise] = []
     
-    init(startTime: Date = Date(), status: WorkoutStatus = .inProgress, notes: String? = nil, programDayID: UUID? = nil) {
+    init(startTime: Date = Date(), status: WorkoutStatus = .inProgress, notes: String? = nil, sessionTemplateID: UUID? = nil) {
         self.id = UUID()
         self.startTime = startTime
         self.statusRaw = status.rawValue
         self.notes = notes
-        self.programDayID = programDayID
+        self.sessionTemplateID = sessionTemplateID
     }
     
     var status: WorkoutStatus {
@@ -64,30 +66,43 @@ final class WorkoutSet {
     var isWarmup: Bool
     var isCompleted: Bool
     
-    // Goals (copied from Program if applicable)
-    var targetReps: String?
-    var targetRPE: Double?
+    // --- Instantiated Targets (The "Brain's" Output) ---
+    var displayIntensity: String? // e.g., "85%", "LW +5", "RPE 8"
+    var computedTarget: String?   // e.g., "225 x 5", "185 x 8-12"
     
-    // Actual performance
+    // --- Actual User Input (The Log) ---
     var weight: Double?
+    var unitRaw: String // "lbs" or "kg"
     var reps: Int?
+    var rpe: Double?
     var timeSeconds: Double?
     var distanceMeters: Double?
-    var rpe: Double?
     
     var workoutExercise: WorkoutExercise?
     
-    init(orderIndex: Int, isWarmup: Bool = false, isCompleted: Bool = false, weight: Double? = nil, reps: Int? = nil, timeSeconds: Double? = nil, distanceMeters: Double? = nil, rpe: Double? = nil, targetReps: String? = nil, targetRPE: Double? = nil) {
+    init(orderIndex: Int, isWarmup: Bool = false, isCompleted: Bool = false, 
+         displayIntensity: String? = nil, computedTarget: String? = nil,
+         weight: Double? = nil, unit: WeightUnit = .lbs, reps: Int? = nil, rpe: Double? = nil, timeSeconds: Double? = nil) {
         self.id = UUID()
         self.orderIndex = orderIndex
         self.isWarmup = isWarmup
         self.isCompleted = isCompleted
+        self.displayIntensity = displayIntensity
+        self.computedTarget = computedTarget
         self.weight = weight
+        self.unitRaw = unit.rawValue
         self.reps = reps
-        self.timeSeconds = timeSeconds
-        self.distanceMeters = distanceMeters
         self.rpe = rpe
-        self.targetReps = targetReps
-        self.targetRPE = targetRPE
+        self.timeSeconds = timeSeconds
     }
+    
+    var unit: WeightUnit {
+        get { WeightUnit(rawValue: unitRaw) ?? .lbs }
+        set { unitRaw = newValue.rawValue }
+    }
+}
+
+enum WeightUnit: String, Codable, CaseIterable {
+    case lbs
+    case kg
 }

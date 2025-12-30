@@ -11,9 +11,17 @@ import SwiftData
 struct WorkoutSessionView: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) private var dismiss
+    @Query private var profiles: [UserProfile]
     
     @Bindable var workout: Workout
     @State private var showingExercisePicker = false
+    
+    private var preferredUnit: WeightUnit {
+        if let raw = profiles.first?.preferredUnitRaw {
+            return WeightUnit(rawValue: raw) ?? .lbs
+        }
+        return .lbs
+    }
     
     var body: some View {
         NavigationStack {
@@ -67,8 +75,8 @@ struct WorkoutSessionView: View {
         newWorkoutExercise.exercise = exercise
         newWorkoutExercise.workout = workout
         
-        // Add one empty set to start
-        let firstSet = WorkoutSet(orderIndex: 0)
+        // Add one empty set to start with user's preferred unit
+        let firstSet = WorkoutSet(orderIndex: 0, unit: preferredUnit)
         firstSet.workoutExercise = newWorkoutExercise
         newWorkoutExercise.sets.append(firstSet)
         
@@ -76,17 +84,12 @@ struct WorkoutSessionView: View {
     }
     
     private func deleteExercise(at offsets: IndexSet) {
-        // Simple delete for now. Re-ordering logic would go here.
-        withAnimation {
-            // Because we are sorting in the view, we need to map the index back to the real array or just rely on SwiftData's relationship management
-            // Ideally we delete the object from the context
-            let sortedExercises = workout.exercises.sorted(by: { $0.orderIndex < $1.orderIndex })
-            for index in offsets {
-                let exerciseToDelete = sortedExercises[index]
-                if let indexInMain = workout.exercises.firstIndex(of: exerciseToDelete) {
-                    workout.exercises.remove(at: indexInMain)
-                    modelContext.delete(exerciseToDelete)
-                }
+        let sortedExercises = workout.exercises.sorted(by: { $0.orderIndex < $1.orderIndex })
+        for index in offsets {
+            let exerciseToDelete = sortedExercises[index]
+            if let indexInMain = workout.exercises.firstIndex(of: exerciseToDelete) {
+                workout.exercises.remove(at: indexInMain)
+                modelContext.delete(exerciseToDelete)
             }
         }
     }
@@ -98,31 +101,29 @@ struct WorkoutSessionView: View {
     }
 }
 
-// A row representing one exercise (e.g., "Bench Press") and its sets
 struct WorkoutExerciseRow: View {
     @Bindable var workoutExercise: WorkoutExercise
     @Environment(\.modelContext) private var modelContext
     
     var body: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: 8) {
             Text(workoutExercise.exercise?.name ?? "Unknown Exercise")
                 .font(.headline)
-                .padding(.bottom, 4)
             
-            // Header
-            HStack {
-                Text("Set").frame(width: 30)
-                Text("lbs").frame(maxWidth: .infinity)
-                Text("Reps").frame(maxWidth: .infinity)
-                Text("RPE").frame(width: 40)
-                Text("✓").frame(width: 30)
+            // Header aligning with the new spec
+            HStack(spacing: 8) {
+                Text("Set").font(.caption2).frame(width: 24)
+                Text("Instr.").font(.caption2).frame(width: 45, alignment: .leading)
+                Text(targetColumnTitle).font(.caption2).frame(maxWidth: .infinity, alignment: .leading)
+                Text("Weight").font(.caption2).frame(width: 60)
+                Text("Reps").font(.caption2).frame(width: 40)
+                Text("RPE").font(.caption2).frame(width: 35)
+                Spacer().frame(width: 24) // Checkmark column
             }
-            .font(.caption)
             .foregroundColor(.secondary)
             
-            // Sets
             ForEach(workoutExercise.sets.sorted(by: { $0.orderIndex < $1.orderIndex })) { set in
-                WorkoutSetRow(set: set, index: set.orderIndex + 1)
+                WorkoutSetRow(set: set)
             }
             .onDelete(perform: deleteSet)
             
@@ -136,15 +137,24 @@ struct WorkoutExerciseRow: View {
         .padding(.vertical, 8)
     }
     
+    private var targetColumnTitle: String {
+        // If we have a session template, it's "Target". 
+        // If we have no template but have history values, it's "Previous".
+        if workoutExercise.workout?.sessionTemplateID != nil {
+            return "Target"
+        } else {
+            return "Prev."
+        }
+    }
+    
     private func addSet() {
         let count = workoutExercise.sets.count
-        // Copy values from previous set for convenience
-        let lastSet = workoutExercise.sets.last
+        let lastSet = workoutExercise.sets.sorted(by: { $0.orderIndex < $1.orderIndex }).last
         
         let newSet = WorkoutSet(orderIndex: count)
         newSet.weight = lastSet?.weight
         newSet.reps = lastSet?.reps
-        
+        newSet.unit = lastSet?.unit ?? .lbs
         newSet.workoutExercise = workoutExercise
         workoutExercise.sets.append(newSet)
     }
@@ -160,32 +170,56 @@ struct WorkoutExerciseRow: View {
 
 struct WorkoutSetRow: View {
     @Bindable var set: WorkoutSet
-    let index: Int
     
     var body: some View {
-        HStack {
-            Text("\(index)")
-                .frame(width: 30)
+        HStack(spacing: 8) {
+            // Set Number
+            Text("\(set.orderIndex + 1)")
+                .frame(width: 24)
+                .font(.caption)
                 .foregroundColor(.secondary)
             
-            TextField("lbs", value: $set.weight, format: .number)
-                .keyboardType(.decimalPad)
-                .multilineTextAlignment(.center)
-                .frame(maxWidth: .infinity)
-                .textFieldStyle(.roundedBorder)
+            // Intensity Instruction (Static display)
+            Text(set.displayIntensity ?? "-")
+                .font(.caption2)
+                .frame(width: 45, alignment: .leading)
+                .lineLimit(1)
             
-            TextField(set.targetReps ?? "reps", value: $set.reps, format: .number)
+            // Target / Previous (Static display)
+            Text(set.computedTarget ?? "-")
+                .font(.caption2)
+                .foregroundColor(.blue)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .lineLimit(1)
+            
+            // Weight Input
+            HStack(spacing: 2) {
+                TextField("0", value: optionalBinding($set.weight), format: .number)
+                    .keyboardType(.decimalPad)
+                    .multilineTextAlignment(.center)
+                    .textFieldStyle(.roundedBorder)
+                
+                Text(set.unitRaw)
+                    .font(.caption2)
+                    .foregroundColor(.secondary)
+            }
+            .frame(width: 75)
+            
+            // Reps Input
+            TextField("0", value: optionalIntBinding($set.reps), format: .number)
                 .keyboardType(.numberPad)
                 .multilineTextAlignment(.center)
-                .frame(maxWidth: .infinity)
                 .textFieldStyle(.roundedBorder)
+                .frame(width: 40)
             
-            TextField(set.targetRPE != nil ? "\(set.targetRPE!.formatted())" : "RPE", value: $set.rpe, format: .number)
+            // RPE Input
+            TextField("-", value: optionalBinding($set.rpe), format: .number)
                 .keyboardType(.decimalPad)
                 .multilineTextAlignment(.center)
-                .frame(width: 45)
                 .textFieldStyle(.roundedBorder)
+                .frame(width: 35)
             
+            // Completion Toggle
             Button {
                 withAnimation {
                     set.isCompleted.toggle()
@@ -193,16 +227,28 @@ struct WorkoutSetRow: View {
             } label: {
                 Image(systemName: set.isCompleted ? "checkmark.circle.fill" : "circle")
                     .foregroundColor(set.isCompleted ? .green : .gray)
-                    .font(.title2)
             }
             .buttonStyle(.borderless)
-            .frame(width: 30)
+            .frame(width: 24)
         }
         .opacity(set.isCompleted ? 0.6 : 1.0)
     }
+    
+    // Helper helpers
+    func optionalBinding(_ binding: Binding<Double?>) -> Binding<Double> {
+        Binding(
+            get: { binding.wrappedValue ?? 0.0 },
+            set: { binding.wrappedValue = $0 }
+        )
+    }
+    func optionalIntBinding(_ binding: Binding<Int?>) -> Binding<Int> {
+        Binding(
+            get: { binding.wrappedValue ?? 0 },
+            set: { binding.wrappedValue = $0 }
+        )
+    }
 }
 
-// A simple picker reusing the logic from ExerciseListView but designed for selection
 struct ExercisePickerView: View {
     var onSelect: (Exercise) -> Void
     @Environment(\.dismiss) private var dismiss
@@ -228,11 +274,9 @@ struct ExercisePickerView: View {
                         HStack {
                             Text(exercise.name)
                             Spacer()
-                            if !exercise.targetMuscleGroup.isEmpty {
-                                Text(exercise.targetMuscleGroup)
-                                    .font(.caption)
-                                    .foregroundStyle(.secondary)
-                            }
+                            Text(exercise.targetMuscleGroup)
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
                         }
                     }
                     .foregroundColor(.primary)

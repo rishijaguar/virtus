@@ -18,8 +18,8 @@ final class Program {
     var durationWeeks: Int
     var sessionsPerWeek: Int
     
-    @Relationship(deleteRule: .cascade, inverse: \ProgramDay.program) 
-    var days: [ProgramDay] = []
+    @Relationship(deleteRule: .cascade, inverse: \SessionTemplate.program) 
+    var sessions: [SessionTemplate] = []
     
     init(name: String, programDescription: String, durationWeeks: Int, sessionsPerWeek: Int, isActive: Bool = false) {
         self.id = UUID()
@@ -33,15 +33,15 @@ final class Program {
 }
 
 @Model
-final class ProgramDay {
+final class SessionTemplate {
     @Attribute(.unique) var id: UUID
     var weekNumber: Int
     var dayNumber: Int // 1-7 (or sequential)
     var title: String // e.g., "Leg Hypertrophy"
     var instructions: String?
     
-    @Relationship(deleteRule: .cascade, inverse: \PlannedExercise.programDay) 
-    var plannedExercises: [PlannedExercise] = []
+    @Relationship(deleteRule: .cascade, inverse: \TemplateExercise.sessionTemplate) 
+    var exercises: [TemplateExercise] = []
     
     var program: Program?
     
@@ -55,20 +55,19 @@ final class ProgramDay {
 }
 
 @Model
-final class PlannedExercise {
+final class TemplateExercise {
     @Attribute(.unique) var id: UUID
     var orderIndex: Int
     
     var exercise: Exercise?
     
-    // Relationship to detailed sets
-    @Relationship(deleteRule: .cascade, inverse: \PlannedSet.plannedExercise)
-    var sets: [PlannedSet] = []
+    @Relationship(deleteRule: .cascade, inverse: \TemplateSet.templateExercise)
+    var sets: [TemplateSet] = []
     
     var restSeconds: Int?
     var notes: String?
     
-    var programDay: ProgramDay?
+    var sessionTemplate: SessionTemplate?
     
     init(orderIndex: Int, restSeconds: Int? = nil, notes: String? = nil) {
         self.id = UUID()
@@ -79,51 +78,63 @@ final class PlannedExercise {
 }
 
 @Model
-final class PlannedSet {
+final class TemplateSet {
     @Attribute(.unique) var id: UUID
     var orderIndex: Int
     
-    // Target Data
+    // --- Target Definition (Reps) ---
     var targetTypeRaw: String
-    var reps: String // Holds "10", "8-12", "AMRAP", "30s" depending on type
+    // Stores the target value string:
+    // - Reps: "5"
+    // - Range: "8-12"
+    // - Time: "30" (interpreted as seconds or minutes based on context, we'll assume seconds for DB)
+    // - AMRAP: "AMRAP"
+    var targetValue: String 
     
-    // Intensity Data
+    // --- Intensity Definition (Load) ---
     var intensityTypeRaw: String
-    var rpe: Double?
-    var weightPercent: Double? // e.g., 75.0 for 75%
+    // Stores the intensity value:
+    // - RPE: "8.0"
+    // - %1RM: "0.85" (85%)
+    // - LW+: "5.0" (Last Week + 5)
+    // - LS+: "2.5" (Last Session + 2.5)
+    // - None: ""
+    var intensityValue: Double? 
     
-    var plannedExercise: PlannedExercise?
+    var templateExercise: TemplateExercise?
     
-    init(orderIndex: Int, reps: String = "10", rpe: Double? = nil, weightPercent: Double? = nil) {
+    init(orderIndex: Int, targetType: TargetType = .reps, targetValue: String = "10", intensityType: IntensityType = .rpe, intensityValue: Double? = nil) {
         self.id = UUID()
         self.orderIndex = orderIndex
-        self.reps = reps
-        self.rpe = rpe
-        self.weightPercent = weightPercent
-        self.targetTypeRaw = PlannedSetTargetType.reps.rawValue
-        self.intensityTypeRaw = PlannedSetIntensityType.rpe.rawValue
+        self.targetTypeRaw = targetType.rawValue
+        self.targetValue = targetValue
+        self.intensityTypeRaw = intensityType.rawValue
+        self.intensityValue = intensityValue
     }
     
-    var targetType: PlannedSetTargetType {
-        get { PlannedSetTargetType(rawValue: targetTypeRaw) ?? .reps }
+    var targetType: TargetType {
+        get { TargetType(rawValue: targetTypeRaw) ?? .reps }
         set { targetTypeRaw = newValue.rawValue }
     }
     
-    var intensityType: PlannedSetIntensityType {
-        get { PlannedSetIntensityType(rawValue: intensityTypeRaw) ?? .rpe }
+    var intensityType: IntensityType {
+        get { IntensityType(rawValue: intensityTypeRaw) ?? .rpe }
         set { intensityTypeRaw = newValue.rawValue }
     }
 }
 
-enum PlannedSetTargetType: String, Codable, CaseIterable {
-    case reps   // "5"
+// Enums for the Data Model Specification
+enum TargetType: String, Codable, CaseIterable {
+    case reps   // Fixed number
     case range  // "8-12"
     case amrap  // "AMRAP"
-    case time   // "30s"
+    case time   // Time in seconds
 }
 
-enum PlannedSetIntensityType: String, Codable, CaseIterable {
-    case rpe        // "RPE 8"
-    case percent1RM // "75%"
-    case none       // "-"
+enum IntensityType: String, Codable, CaseIterable {
+    case rpe              // RPE 1-10
+    case percent1RM       // % of 1RM
+    case lastWeekPlus     // LW + X
+    case lastSessionPlus  // LS + X
+    case none             // No intensity specified
 }

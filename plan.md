@@ -93,8 +93,11 @@ The app balances an **opinionated, structured approach** to training (Programs) 
 *   **Coach UI:** Built the basic Chat interface and Profile view.
 
 ## 8. Lessons Learned
-*   **SwiftData Seeding:** Triggering an async seed task inside a lazy `sharedModelContainer` closure is unreliable because the View might query before the task completes. **Solution:** Move seeding logic to a `.task` or `.onAppear` modifier on the root View (`ContentView`).
+*   **SwiftData Seeding:** Triggering an async seed task inside a lazy `sharedModelContainer` closure is unreliable. **Solution:** Move seeding logic to a `.task` on `ContentView`.
 *   **Bundle Resources:** When adding external files (like `exercises.json`) to an Xcode project, they must be explicitly added to the "Target Membership" or they won't be copied to the bundle, causing file-not-found errors at runtime.
 *   **SwiftUI Lists & Buttons:** Placing a standard `Button` inside a `List` row causes the entire row to become tappable (hijacking the touch target). **Solution:** Always use `.buttonStyle(.borderless)` for buttons inside List rows to isolate their tap area.
-*   **Compiler Timeouts:** Complex logic inside SwiftUI View Builders (especially nested `ForEach` and `List` combinations) can cause "compiler unable to type-check" errors. **Solution:** Refactor complex sub-views (like a Week section) into their own `struct` views to simplify the AST for the compiler.
-*   **Model Complexity:** Changing the data model (e.g., moving from `targetSets: Int` to `sets: [PlannedSet]`) requires careful migration of UI logic (rendering loops, add/delete actions) and awareness that existing simulator data might need a wipe.
+*   **Compiler Timeouts:** Deeply nested `List`/`Section`/`ForEach` with local logic triggers compiler errors. **Solution:** Extract complex sub-views (like a Week section) into their own `struct` views to simplify the AST for the compiler.
+*   **Model Complexity:** Changing the data model (e.g., moving from `targetSets: Int` to `sets: [PlannedSet]`) requires careful migration of UI logic and awareness that existing simulator data might need a wipe.
+*   **Complex Binding:** SwiftUI's `$set.property` binding fails in deep loops inside a `List`. **Solution:** Extract sub-rows into separate `struct` views using `@Bindable`.
+*   **Intensity Logic:** Calculating targets requires a "Builder" service that has access to both the `UserProfile` (for 1RM) and the `ModelContext` (for History).
+*   **Unit Safety:** For power users, storing weight as a raw `Double` requires an accompanying `WeightUnit` flag to ensure "LS + 5" logic converts correctly if the user switches from KG to LBS.
