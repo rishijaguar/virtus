@@ -1,0 +1,22 @@
+# Xcode
+#
+# gitignore contributors: better-gitignore-bot, fe9lix, facerless, d-ronn
+
+## Build results
+build/
+DerivedData/
+
+## Project settings
+xcuserdata/
+
+## Configuration
+Secrets.plist
+
+## Others
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+## macOS
+.DS_Store

@@ -63,16 +63,17 @@ The app balances an **opinionated, structured approach** to training (Programs) 
 *   [x] **History View:** View past workouts.
 
 ### Phase 3: The Coach (Intelligence)
-*   [ ] **Chat Interface:** Chat UI bubble (UI done, logic pending).
-*   [ ] **LLM Integration:** Connect to Cloud API (Gemini).
-*   [ ] **Context Injection:** Feed `UserProfile` and `WorkoutHistory` to the LLM.
-*   [ ] **Tool Use:** Enable LLM to return structured JSON for "Suggested Changes".
+*   [x] **Chat Interface:** Chat UI bubble (UI done, logic pending).
+*   [x] **LLM Integration:** Connect to Cloud API (Gemini).
+*   [x] **Context Injection:** Feed `UserProfile` and `WorkoutHistory` to the LLM.
+*   [x] **Tool Use:** Enable LLM to return structured JSON for "Suggested Changes".
 
 ### Phase 4: Program Management
 *   [x] **Program Browser/Viewer:** UI to view the current schedule.
 *   [x] **Program Creation:** Manual creation and editing of structure.
 *   [x] **Template Control:** Granular control over sets, reps (Ranges, AMRAP, Time), and intensity (RPE, %1RM).
 *   [ ] **Onboarding Flow:** First-run experience where Coach generates Program #1.
+*   [ ] **Action Approval UI:** Interface to review and accept/reject Coach's proposed program changes.
 
 ## 6. User Directives & Preferences
 *   **Style:** Native iOS look and feel (SwiftUI).
@@ -91,6 +92,11 @@ The app balances an **opinionated, structured approach** to training (Programs) 
     *   Implemented "Start Workout from Template" logic that copies planned sets to the active logger.
 *   **History:** Implemented a History view to review completed workouts.
 *   **Coach UI:** Built the basic Chat interface and Profile view.
+*   **Intelligence:** Integrated Gemini 2.5 Flash via `GeminiService`.
+    *   Implemented secure API key management via `Secrets.plist` (git-ignored).
+    *   Developed a dynamic system prompt that injects `UserProfile` data and the last 5 workouts for context-aware coaching.
+    *   Established a "Tool Use" framework using structured JSON responses, allowing the AI to update user goals, injuries, and preferences autonomously.
+    *   Added a typing indicator and smooth auto-scrolling to the Chat UI.
 
 ## 8. Lessons Learned
 *   **SwiftData Seeding:** Triggering an async seed task inside a lazy `sharedModelContainer` closure is unreliable. **Solution:** Move seeding logic to a `.task` on `ContentView`.
