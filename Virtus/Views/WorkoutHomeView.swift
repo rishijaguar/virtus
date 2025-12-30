@@ -39,6 +39,13 @@ struct WorkoutHomeView: View {
                 }
                 .padding(.horizontal, 40)
                 
+                NavigationLink(destination: ProgramListView()) {
+                    Text("Browse Programs")
+                        .font(.headline)
+                        .foregroundColor(.blue)
+                        .padding()
+                }
+                
                 Spacer()
             }
             .navigationTitle("Workout")

@@ -53,23 +53,25 @@ The app balances an **opinionated, structured approach** to training (Programs) 
 ## 5. Development Roadmap
 
 ### Phase 1: Foundation (Current Focus)
-*   [ ] Set up SwiftData Schema (clean up boilerplate).
-*   [ ] Create core Models (`Exercise`, `Program`, `Workout`, `UserProfile`).
-*   [ ] Build the basic App Shell (TabView).
+*   [x] Set up SwiftData Schema (clean up boilerplate).
+*   [x] Create core Models (`Exercise`, `Program`, `Workout`, `UserProfile`).
+*   [x] Build the basic App Shell (TabView).
 
 ### Phase 2: The Logger (CRUD)
-*   [ ] **Exercise Manager:** Seed DB, list view, search.
-*   [ ] **Workout Session UI:** Interface to add exercises and log sets active/live.
-*   [ ] **History View:** View past workouts.
+*   [x] **Exercise Manager:** Seed DB, list view, search.
+*   [x] **Workout Session UI:** Interface to add exercises and log sets active/live.
+*   [x] **History View:** View past workouts.
 
 ### Phase 3: The Coach (Intelligence)
-*   [ ] **Chat Interface:** Chat UI bubble.
-*   [ ] **LLM Integration:** Connect to Cloud API.
+*   [ ] **Chat Interface:** Chat UI bubble (UI done, logic pending).
+*   [ ] **LLM Integration:** Connect to Cloud API (Gemini).
 *   [ ] **Context Injection:** Feed `UserProfile` and `WorkoutHistory` to the LLM.
 *   [ ] **Tool Use:** Enable LLM to return structured JSON for "Suggested Changes".
 
 ### Phase 4: Program Management
-*   [ ] **Program Browser/Viewer:** UI to view the current schedule.
+*   [x] **Program Browser/Viewer:** UI to view the current schedule.
+*   [x] **Program Creation:** Manual creation and editing of structure.
+*   [x] **Template Control:** Granular control over sets, reps (Ranges, AMRAP, Time), and intensity (RPE, %1RM).
 *   [ ] **Onboarding Flow:** First-run experience where Coach generates Program #1.
 
 ## 6. User Directives & Preferences
@@ -77,3 +79,22 @@ The app balances an **opinionated, structured approach** to training (Programs) 
 *   **Philosophy:** The app should have an "opinionated voice" favoring structure, but allow flexibility.
 *   **Safety:** Coach actions regarding data modification must always be explicit (Suggest/Accept).
 *   **One-off Workouts:** Supported; can serve as seeds for new programs.
+
+---
+
+## 7. Progress Log
+*   **Infrastructure:** Established robust SwiftData schema including `Exercise`, `Program`, `ProgramDay`, `PlannedExercise`, `PlannedSet`, `Workout`, `WorkoutSet`, and `UserProfile`.
+*   **Exercise Database:** Implemented a JSON-backed seeder (`exercises.json`) that populates the database on app launch. Added an Exercise List view with search.
+*   **Workout Logger:** Created a fully functional active session logger (`WorkoutSessionView`) capable of recording weight, reps, and RPE. Supports "Add Set" and completion toggles.
+*   **Program Management:** Built a comprehensive Program Creator (`ProgramViews`) allowing users to define duration (weeks), frequency (days/week), and detailed exercise templates.
+    *   Added support for complex programming (Reps vs Time vs AMRAP, RPE vs %1RM).
+    *   Implemented "Start Workout from Template" logic that copies planned sets to the active logger.
+*   **History:** Implemented a History view to review completed workouts.
+*   **Coach UI:** Built the basic Chat interface and Profile view.
+
+## 8. Lessons Learned
+*   **SwiftData Seeding:** Triggering an async seed task inside a lazy `sharedModelContainer` closure is unreliable because the View might query before the task completes. **Solution:** Move seeding logic to a `.task` or `.onAppear` modifier on the root View (`ContentView`).
+*   **Bundle Resources:** When adding external files (like `exercises.json`) to an Xcode project, they must be explicitly added to the "Target Membership" or they won't be copied to the bundle, causing file-not-found errors at runtime.
+*   **SwiftUI Lists & Buttons:** Placing a standard `Button` inside a `List` row causes the entire row to become tappable (hijacking the touch target). **Solution:** Always use `.buttonStyle(.borderless)` for buttons inside List rows to isolate their tap area.
+*   **Compiler Timeouts:** Complex logic inside SwiftUI View Builders (especially nested `ForEach` and `List` combinations) can cause "compiler unable to type-check" errors. **Solution:** Refactor complex sub-views (like a Week section) into their own `struct` views to simplify the AST for the compiler.
+*   **Model Complexity:** Changing the data model (e.g., moving from `targetSets: Int` to `sets: [PlannedSet]`) requires careful migration of UI logic (rendering loops, add/delete actions) and awareness that existing simulator data might need a wipe.

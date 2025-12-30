@@ -168,22 +168,22 @@ struct WorkoutSetRow: View {
                 .frame(width: 30)
                 .foregroundColor(.secondary)
             
-            TextField("-", value: $set.weight, format: .number)
+            TextField("lbs", value: $set.weight, format: .number)
                 .keyboardType(.decimalPad)
                 .multilineTextAlignment(.center)
                 .frame(maxWidth: .infinity)
                 .textFieldStyle(.roundedBorder)
             
-            TextField("-", value: $set.reps, format: .number)
+            TextField(set.targetReps ?? "reps", value: $set.reps, format: .number)
                 .keyboardType(.numberPad)
                 .multilineTextAlignment(.center)
                 .frame(maxWidth: .infinity)
                 .textFieldStyle(.roundedBorder)
             
-            TextField("-", value: $set.rpe, format: .number)
+            TextField(set.targetRPE != nil ? "\(set.targetRPE!.formatted())" : "RPE", value: $set.rpe, format: .number)
                 .keyboardType(.decimalPad)
                 .multilineTextAlignment(.center)
-                .frame(width: 40)
+                .frame(width: 45)
                 .textFieldStyle(.roundedBorder)
             
             Button {
@@ -198,6 +198,7 @@ struct WorkoutSetRow: View {
             .buttonStyle(.borderless)
             .frame(width: 30)
         }
+        .opacity(set.isCompleted ? 0.6 : 1.0)
     }
 }
 

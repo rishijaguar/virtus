@@ -16,6 +16,7 @@ struct VirtusApp: App {
             Program.self,
             ProgramDay.self,
             PlannedExercise.self,
+            PlannedSet.self,
             Workout.self,
             WorkoutExercise.self,
             WorkoutSet.self,

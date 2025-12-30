@@ -63,6 +63,12 @@ final class WorkoutSet {
     var orderIndex: Int
     var isWarmup: Bool
     var isCompleted: Bool
+    
+    // Goals (copied from Program if applicable)
+    var targetReps: String?
+    var targetRPE: Double?
+    
+    // Actual performance
     var weight: Double?
     var reps: Int?
     var timeSeconds: Double?
@@ -71,7 +77,7 @@ final class WorkoutSet {
     
     var workoutExercise: WorkoutExercise?
     
-    init(orderIndex: Int, isWarmup: Bool = false, isCompleted: Bool = false, weight: Double? = nil, reps: Int? = nil, timeSeconds: Double? = nil, distanceMeters: Double? = nil, rpe: Double? = nil) {
+    init(orderIndex: Int, isWarmup: Bool = false, isCompleted: Bool = false, weight: Double? = nil, reps: Int? = nil, timeSeconds: Double? = nil, distanceMeters: Double? = nil, rpe: Double? = nil, targetReps: String? = nil, targetRPE: Double? = nil) {
         self.id = UUID()
         self.orderIndex = orderIndex
         self.isWarmup = isWarmup
@@ -81,5 +87,7 @@ final class WorkoutSet {
         self.timeSeconds = timeSeconds
         self.distanceMeters = distanceMeters
         self.rpe = rpe
+        self.targetReps = targetReps
+        self.targetRPE = targetRPE
     }
 }
